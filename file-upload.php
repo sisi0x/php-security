@@ -1,5 +1,20 @@
 <?php
-if (isset($_FILES['image'])){
+
+// Not fiex 
+if (isset($_FILES['image']) == 'POST'){
+$imageName = $_FILES['image']['name'];
+$imageSize = $_FILES['image']['size'];
+$imageTmp  = $_FILES['image']['tmp_name'];
+$imageType = $_FILES['image']['type'];
+    echo "name is: " .$file_name."<br>";
+    echo "Size is: " .$file_size."<br>";
+    echo "Tmp is: " .$file_tmp."<br>";
+    echo "type is: " .$file_type."<br>";
+    }
+
+
+// Fiex code
+if (isset($_FILES['image']) == 'POST'){
     // print_r($_FILES['image'])."<br>";
     $file_name=$_FILES['image']['name'];
     $file_size=$_FILES['image']['size'];
@@ -10,11 +25,12 @@ if (isset($_FILES['image'])){
     echo "Size is: " .$file_size."<br>";
     echo "Tmp is: " .$file_tmp."<br>";
     echo "type is: " .$file_type."<br>";
+
     $avalible_ext= array('jprg','jpg','png','jpeg') ;
     // // JPG JpG jPg 
     $ext=(end(explode('.',$file_name)));
     $imgage = rand(0,100000). '.' . $ext;
-
+    
     if(!in_array($ext,$avalible_ext))
     {
         echo $error="invalid extension";
