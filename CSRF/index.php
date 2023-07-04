@@ -11,7 +11,7 @@
    
     <input type="submit" value="delete my account">
     <input type="hidden" name="_token" value="<?php $_SESSION['_token'];?>"/>
-<!--too see the token-->   
+<!--Too see the token and After you see the token, make a comment (//) -->   
     <?php echo $_SESSION['_token']=bin2hex(random_bytes(32)); ?>
   </form>
 </body>
