@@ -56,16 +56,16 @@ if($_SERVER['REQUEST_METHOD'] !== 'POST'){
 }
 
 
-// /*
-//  Here The developer check The token with SESSION
-// */
+ /*
+ # Here The developer check The token with SESSION
+*/
 
-// if(!isset($_POST['token']) || ($_POST['token'] !== $_SESSION['token'])){
+ if(!isset($_POST['token']) || ($_POST['token'] !== $_SESSION['token'])){
         
-//   die("Invalid token");
-//   die("Missing parameter token");
+  die("Invalid token");
+  die("Missing parameter token");
 
-// }
+}
 $query = $db->prepare("UPDATE users SET status = 0 WHERE id = :user_id");
 $query->execute([
   'user_id' => $_SESSION['user_id'],
