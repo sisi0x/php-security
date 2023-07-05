@@ -17,9 +17,9 @@ https://portswigger.net/web-security/csrf/lab-no-defenses
 // $query->execute([
 //   'user_id' => $_SESSION['user_id'],
 // ]);
-// ?>
+// 
 
-<?php 
+
 
 ####################
 // code fix
@@ -56,11 +56,11 @@ if($_SERVER['REQUEST_METHOD'] !== 'POST'){
 }
 
 
- /*
- # Here The developer check The token with SESSION
-*/
+// /*
+//  Here The developer check The token with SESSION
+// */
 
- if(!isset($_POST['token']) || ($_POST['token'] !== $_SESSION['token'])){
+if(!isset($_POST['token']) || ($_POST['token'] !== $_SESSION['token'])){
         
   die("Invalid token");
   die("Missing parameter token");
