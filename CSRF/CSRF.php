@@ -12,13 +12,11 @@ https://portswigger.net/web-security/csrf/lab-no-defenses
 
 */
 
-// require 'connect.php';
+//require 'connect.php';
 // $query = $db->prepare("UPDATE users SET status = 0 WHERE id = :user_id");
 // $query->execute([
 //   'user_id' => $_SESSION['user_id'],
 // ]);
-
-
 
 ####################
 // code fix
@@ -27,7 +25,7 @@ https://portswigger.net/web-security/csrf/lab-no-defenses
 /*
 
 To fix The vulnerable we nade :  
-1- create token and check the parameter send be REQUEST METHOD
+1- create token and check the parameter with REQUEST METHOD
 2- must The token  be strong , and the length must be no less than 16 And must gev the User new token in every requst
 2- we nade check The REQUEST_METHOD only POST 
 
@@ -54,20 +52,20 @@ if($_SERVER['REQUEST_METHOD'] !== 'POST'){
 
 }
 
+ /*
+  # Here check The token 
+  # check the token if remove gev hem Missing parameter token
+/*/
 
-// /*
-//  Here The developer check The token with SESSION
-// */
-
-if(!isset($_POST['token']) || ($_POST['token'] !== $_SESSION['token'])){
+if(!isset($_POST['token']) && ($_POST['token'] !== $_SESSION['token'])){
 
   die("Invalid token");
       
   die("Missing parameter token");
 
 }
+
 $query = $db->prepare("UPDATE users SET status = 0 WHERE id = :user_id");
 $query->execute([
-  'user_id' => $_SESSION['user_id'],
-]);
+  'user_id' => $_SESSION['user_id']]);
  ?>
