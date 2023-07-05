@@ -1,4 +1,5 @@
 <?php require 'connect.php';?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -7,10 +8,13 @@
   <title>Form</title>
 </head>
 <body>
-  <form action="delete.php" method="POST">
+  <form action="CSRF.php" method="POST">
    
     <input type="submit" value="delete my account">
-    <input type="hidden" name="_token" value="<?php $_SESSION['_token'];?>"/>
+    <?php // Here generate token and change token for each request ?>
+
+    <input type="hidden" name="token" value=<?php echo bin2hex(random_bytes(32));  ?>/>
   </form>
+
 </body>
 </html>
