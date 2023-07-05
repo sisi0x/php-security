@@ -17,9 +17,8 @@ https://portswigger.net/web-security/csrf/lab-no-defenses
 // $query->execute([
 //   'user_id' => $_SESSION['user_id'],
 // ]);
-// ?>
 
-<?php 
+
 
 ####################
 // code fix
