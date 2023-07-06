@@ -13,8 +13,11 @@
     <input type="submit" value="delete my account">
     <?php // Here generate token and change token for each request ?>
 
-    <input type="hidden" name="token" value=<?php echo bin2hex(random_bytes(32));  ?>/>
+    <input type="hidden" name="token" value= <?php $lens=bin2hex(random_bytes(16));echo$lens;?>/>
   </form>
 
+        
+  
+ 
 </body>
 </html>
