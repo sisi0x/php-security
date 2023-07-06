@@ -4,12 +4,7 @@
 //######################
 
 /*
-
 # Here no check for anythink ,
-# Here you can see the lab for Example  (
-https://portswigger.net/web-security/csrf/lab-no-defenses 
-)
-
 */
 
 require 'connect.php';
@@ -17,6 +12,8 @@ require 'connect.php';
 // $query->execute([
 //   'user_id' => $_SESSION['user_id'],
 // ]);
+
+
 
 ####################
 // code fix
@@ -29,9 +26,6 @@ To fix The vulnerable we nade :
 2- must The token  be strong , and the length must be no less than 16 And must gev the User new token in every requst
 2- we nade check The REQUEST_METHOD only POST 
 
-
-require 'connect.php';
-
 /*
 
 # Here you will see The token ,then you should put a comment (//)   
@@ -39,41 +33,61 @@ require 'connect.php';
 */
  
 //  echo $_SESSION['_token']=bin2hex(random_bytes(32)); 
+    
+/*
+    # Check the request method 
+    # If the requset method POTS ,display a success message 
+    # Otherwise , display an error message and exit
+*/
+    if($_SERVER['REQUEST_METHOD'] == 'POST')
+    {
+      echo "Valied Mthoed.... (: ";
+/*
+    # Check the token
+    # If the token is found , display a success message  
+    # Otherwise, display an error message and exit
+*/
+          if (isset($_POST["token"]) == "token") 
+          {
 
+              echo "<br>";
+              echo "vailed premeter .... (: ";
+              
 
 /*
-# Here The developer check The token ,but forget check the REQUEST METHOD
-# Here you can see the lab for  Example ( https://portswigger.net/web-security/csrf/bypassing-token-validation/lab-token-validation-depends-on-request-method )
-*/
 
-// if($_SERVER['REQUEST_METHOD'] !== 'POST'){
+    # Check the token length
+    # The length must be at least 64 characters
+    # If the token length is valid,update the user status and display a success message 
+    # Otherwise, display an error message and exit
 
-//   die('Invalid METHOD');
-
-// }
-
-//  /*
-//   # Here check The token 
-//   # check the token if remove gev hem Missing parameter token
-// /*/
-
-// if(isset($_POST['token']) && ($_POST['token'] !== $_SESSION['token'])){
-
-  
-//   die("Invalid token");
+    */
+              if(isset($_POST["token"])) {
+                  $token_length = strlen($_POST["token"]);
+                  echo "<br>";  
+                  echo $token_length;
+                  if ($token_length == 64 ) { 
+                    echo "<br>";
+                    echo "valid token length";
+                    echo "<br>";
+                    echo "Account deleted successfully";
+                    $query = $db->prepare("UPDATE users SET status = 0 WHERE id = :user_id");
+                    $query->execute(['user_id' => $_SESSION['user_id']]);
+                } else {
+                  echo "<br>"; 
+                  // herer you shoud use the die becaes if you ues echo you gest have hem  message error , but the attack successfully
+                 die("Error: Invalid token length");
+                }
+              }
+          }else{
+                echo "<br>";
+                die("Invalied Premeter...!");
+          }
       
-//   die("Missing parameter token");
-
-// }
-// $query = $db->prepare("UPDATE users SET status = 0 WHERE id = :user_id");
-// $query->execute([
-//   'user_id' => $_SESSION['user_id']]);
-
-
-
-
-
-
-
-
- ?>
+    }else{
+             echo "<br>";
+              die("Invailed Mthoed....!");
+          }
+        
+    
+        ?>
