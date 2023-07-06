@@ -12,7 +12,7 @@ https://portswigger.net/web-security/csrf/lab-no-defenses
 
 */
 
-//require 'connect.php';
+require 'connect.php';
 // $query = $db->prepare("UPDATE users SET status = 0 WHERE id = :user_id");
 // $query->execute([
 //   'user_id' => $_SESSION['user_id'],
@@ -46,26 +46,84 @@ require 'connect.php';
 # Here you can see the lab for  Example ( https://portswigger.net/web-security/csrf/bypassing-token-validation/lab-token-validation-depends-on-request-method )
 */
 
-if($_SERVER['REQUEST_METHOD'] !== 'POST'){
+// if($_SERVER['REQUEST_METHOD'] !== 'POST'){
 
-  die('Invalid METHOD');
+//   die('Invalid METHOD');
 
-}
+// }
 
- /*
-  # Here check The token 
-  # check the token if remove gev hem Missing parameter token
-/*/
+//  /*
+//   # Here check The token 
+//   # check the token if remove gev hem Missing parameter token
+// /*/
 
-if(!isset($_POST['token']) && ($_POST['token'] !== $_SESSION['token'])){
+// if(isset($_POST['token']) && ($_POST['token'] !== $_SESSION['token'])){
 
-  die("Invalid token");
+  
+//   die("Invalid token");
       
-  die("Missing parameter token");
+//   die("Missing parameter token");
 
+// }
+// $query = $db->prepare("UPDATE users SET status = 0 WHERE id = :user_id");
+// $query->execute([
+//   'user_id' => $_SESSION['user_id']]);
+
+
+// test 
+
+
+if($_SERVER['REQUEST_METHOD'] == 'POST')
+{
+
+  
+
+
+
+  echo "valied Mthoed.... (: ";
+    /*
+      # Here check The token 
+      # check the token if remove gev hem Missing parameter token
+    /*/
+        if (isset($_POST["token"]) == "token") {
+
+             
+            echo "<br>";
+            echo "vailed token (: ";
+
+                    if(isset($_POST["token"]) == ($_POST[32])){
+                      echo "<br>";
+                      echo "vailed lenss (: ";
+                          $query = $db->prepare("UPDATE users SET status = 0 WHERE id = :user_id");
+                          $query->execute([
+                            'user_id' => $_SESSION['user_id']]);
+                            // die("Invalid token");
+                            
+                            // die("Missing parameter token");
+                      }else{
+                        echo "<br>";
+                        die("Invalied lenss...!");
+                      }
+              
+        }else{
+            
+            echo "<br>";
+            die("Invalied Premeter...!");
+        }
+        // if(isset($_POST['token']) == ($_POST['token'] )){
+          
+      
+    
+    
+  }else{
+    echo "<br>";
+    die("Invailed Mthoed....!");
 }
 
-$query = $db->prepare("UPDATE users SET status = 0 WHERE id = :user_id");
-$query->execute([
-  'user_id' => $_SESSION['user_id']]);
+
+
+
+
+
+
  ?>
