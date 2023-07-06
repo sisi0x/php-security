@@ -70,56 +70,6 @@ require 'connect.php';
 //   'user_id' => $_SESSION['user_id']]);
 
 
-// test 
-
-
-if($_SERVER['REQUEST_METHOD'] == 'POST')
-{
-
-  
-
-
-
-  echo "valied Mthoed.... (: ";
-    /*
-      # Here check The token 
-      # check the token if remove gev hem Missing parameter token
-    /*/
-        if (isset($_POST["token"]) == "token") {
-
-             
-            echo "<br>";
-            echo "vailed token (: ";
-
-                    if(isset($_POST["token"]) == ($_POST[32])){
-                      echo "<br>";
-                      echo "vailed lenss (: ";
-                          $query = $db->prepare("UPDATE users SET status = 0 WHERE id = :user_id");
-                          $query->execute([
-                            'user_id' => $_SESSION['user_id']]);
-                            // die("Invalid token");
-                            
-                            // die("Missing parameter token");
-                      }else{
-                        echo "<br>";
-                        die("Invalied lenss...!");
-                      }
-              
-        }else{
-            
-            echo "<br>";
-            die("Invalied Premeter...!");
-        }
-        // if(isset($_POST['token']) == ($_POST['token'] )){
-          
-      
-    
-    
-  }else{
-    echo "<br>";
-    die("Invailed Mthoed....!");
-}
-
 
 
 
