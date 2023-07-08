@@ -11,9 +11,10 @@
   <form action="CSRF.php" method="POST">
    
     <input type="submit" value="delete my account">
-    <?php // Here generate token and change token for each request ?>
+       <?php // Here generate token and change token for each request
+          // used unique  ?>
 
-    <input type="hidden" name="token" value= <?php $lens=bin2hex(random_bytes(32));echo$lens;?>/>
+    <input type="hidden" name="token" value= <?php $lens=bin2hex(random_bytes(32)).time(); echo$lens;?>/>
   </form>
 
         
