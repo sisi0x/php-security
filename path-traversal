@@ -1,0 +1,73 @@
+<?php
+// code not fixt 
+
+if (isset($_GET['path'])){
+    $path = $_GET['path'] ;
+        if (file_exists($path) || is_file($path) || is_readable($path)) {
+        
+            header("Content-Type: image/jpg") ;
+            $image = file_get_contents("$path") ;
+            echo $image ;
+            die() ;
+        }
+        else {
+            echo "Error Path !" ;
+        }
+    }
+    
+    else {
+        
+    header("Content-Type: image/jpg") ;
+    header("Location: /image/path_traversal.php?path=cat.jpg") ;
+    exit() ;
+    
+}
+
+?>
+<form method="GET" >
+    <input type="text" name="path" >
+    <button type="submit">get Path</button>
+    
+</form>
+<?php
+// code not fixted
+
+
+if (isset($_GET['path'])){
+    $path = $_GET['path'] ;
+        if (file_exists($path) || is_file($path) || is_readable($path)) {
+
+       $substitutions = array(
+		'../'  => '#',
+		'....//'  => '#',
+	);
+
+	// Remove any of the characters in the array (blacklist).
+	$target = str_replace( array_keys( $substitutions ), $substitutions,  $path  );
+str_replace($path,$check)
+            header("Content-Type: image/jpg") ;
+            $image = file_get_contents("$target") ;
+            echo $image ;
+            die() ;
+        }
+        else {
+            echo "Error Path !" ;
+        }
+    }
+    
+    else {
+        
+    header("Content-Type: image/jpg") ;
+    header("Location: /image/path_traversal.php?path=cat.jpg") ;
+    exit() ;
+    
+}
+
+<form method="GET" >
+    <input type="text" name="path" >
+    <button type="submit">get Path</button>
+    
+</form>
+
+
+?>
