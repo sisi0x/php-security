@@ -1,0 +1,52 @@
+
+<?php
+//Code not fixt
+if(isset($_POST['submit'])){
+	$inpout= strtolower($_POST['search']);
+	$inpout= str_replace("<script>","",$inpout);
+}
+?>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>HTML injcation</title>
+</head>
+<body>
+    <form method="POST" action="">
+    <center>
+        <?php echo $inpout."<br>";?>
+    <input type="text" name="search">
+    <input type="submit" name="submit">
+    </form>
+</body>
+</html>
+
+
+<?php
+//code Fixt
+if(isset($_POST['submit'])){
+	$inpout= strtolower($_POST['search']);
+	$inpout= str_replace("<script>","",$inpout);
+	$inpout= str_replace("on","",$inpout);
+
+}
+?>
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>HTML injcation</title>
+</head>
+<body>
+    <form method="POST" action="">
+    <center>
+        <?php echo $inpout."<br>";?>
+    <input type="text" name="search">
+    <input type="submit" name="submit">
+    </form>
+</body>
+</html>
